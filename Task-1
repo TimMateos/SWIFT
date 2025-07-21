@@ -1,0 +1,33 @@
+import Foundation
+
+func exploreMaze(mazeCells: [String], treasureCells: [String: Bool], emptyCells: [String: Bool]) {
+    var treasureFound = false // Флаг для отслеживания, найдено ли сокровище
+
+    for cell in mazeCells {
+        // Проверяем, есть ли ячейка в словаре с сокровищами
+        if let hasTreasure = treasureCells[cell], hasTreasure {
+            print("Сокровище найдено в ячейке: \(cell)")
+            treasureFound = true
+            break
+        }
+    }
+
+    if !treasureFound {
+        print("Сокровищ в лабиринте не обнаружено.")
+    }
+}
+
+let maze: [String] = ["A1", "B2", "C3", "D4", "E5"]
+
+let treasureCells: [String: Bool] = [
+    "C3": true,  // Сокровище
+    "E5": true   // Дополнительное сокровище (найдётся только первое)
+]
+
+let emptyCells: [String: Bool] = [
+    "A1": false,
+    "B2": false,
+    "D4": false
+]
+
+exploreMaze(mazeCells: maze, treasureCells: treasureCells, emptyCells: emptyCells)
