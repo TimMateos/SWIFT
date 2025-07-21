@@ -1,5 +1,3 @@
-import Foundation
-
 func exploreMaze(mazeCells: [String], treasureCells: [String: Bool], emptyCells: [String: Bool]) {
     var treasureFound = false // Флаг для отслеживания, найдено ли сокровище
 
