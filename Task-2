@@ -1,5 +1,3 @@
-import Foundation
-
 // Протокол портала
 protocol Portal {
     var destination: String { get }
