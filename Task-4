@@ -1,5 +1,3 @@
-import Foundation
-
 // Протокол, описывающий оружие
 protocol Weapon {
     var name: String { get }
