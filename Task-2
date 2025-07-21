@@ -1,0 +1,55 @@
+import Foundation
+
+// Протокол портала
+protocol Portal {
+    var destination: String { get }
+    func transport(hero: Hero)
+}
+
+// Структура героя
+struct Hero {
+    var name: String
+    var currentLocation: String
+}
+
+// Реализации разных типов порталов
+struct DimensionPortal: Portal {
+    var destination: String
+
+    func transport(hero: Hero) {
+        print("\(hero.name) перемещается в измерение: \(destination)")
+    }
+}
+
+struct PlanetPortal: Portal {
+    var destination: String
+
+    func transport(hero: Hero) {
+        print("\(hero.name) телепортируется на планету: \(destination)")
+    }
+}
+
+struct EarthPortal: Portal {
+    var destination: String
+
+    func transport(hero: Hero) {
+        print("\(hero.name) возвращается на Землю: \(destination)")
+    }
+}
+
+// Обновлённая функция перемещения
+func travelThroughPortal(hero: inout Hero, using portal: Portal) {
+    portal.transport(hero: hero)
+    hero.currentLocation = portal.destination
+    print("Герой теперь находится в: \(hero.currentLocation)\n")
+}
+
+// Пример использования
+
+var hero = Hero(name: "Морти", currentLocation: "Земля")
+
+let dimensionPortal = DimensionPortal(destination: "Измерение X")
+let planetPortal = PlanetPortal(destination: "Планета Зета")
+let earthPortal = EarthPortal(destination: "Земля")
+
+travelThroughPortal(hero: &hero, using: dimensionPortal)
