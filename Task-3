@@ -1,0 +1,41 @@
+import Foundation
+
+// Ошибки, которые могут произойти во время атаки
+enum BattleError: Error {
+    case attackMissed   // атака промахнулась
+    case dragonBlock // дракон заблокировал атаку
+}
+
+// Структура героя
+struct Hero {
+    let name: String
+}
+
+// Функция атаки дракона
+func attackDragon(hero: inout Hero) throws {
+    print("⚔️ \(hero.name) пытается атаковать дракона!")
+
+    // Генерируем случайное число от 0 до 2
+    let outcome = Int.random(in: 0...2)
+
+    switch outcome {
+    case 0:
+        throw BattleError.attackMissed
+    case 1:
+        throw BattleError.dragonBlock
+    default:
+        print("Успех! \(hero.name) поразил дракона!")
+    }
+}
+// Пимер использования
+var hero = Hero(name: "Балдуран")
+
+do {
+    try attackDragon(hero: &hero)
+} catch BattleError.attackMissed {
+    print("💨 Атака промахнулась! Дракон ускользнул.")
+} catch BattleError.dragonBlock {
+    print("Дракон заблокировал атаку!")
+} catch {
+    print("Неизвестная ошибка в битве.")
+}
