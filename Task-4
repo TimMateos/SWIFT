@@ -1,0 +1,59 @@
+import Foundation
+
+// Протокол, описывающий оружие
+protocol Weapon {
+    var name: String { get }
+    func attack()
+}
+
+// Расширение с поведением по умолчанию
+extension Weapon {
+    func attack() {
+        print("\(name) наносит стандартный удар.")
+    }
+}
+
+// 1. Меч — использует поведение по умолчанию
+struct Sword: Weapon {
+    let name: String
+}
+
+// 2. Магический посох — переопределяет поведение
+struct MagicStaff: Weapon {
+    let name: String
+
+    func attack() {
+        print("\(name) выпускает мощный поток магии!")
+    }
+}
+
+// 3. Лук — использует поведение по умолчанию
+struct Bow: Weapon {
+    let name: String
+}
+
+// 4. Щит — переопределяет поведение
+struct Shield: Weapon {
+    let name: String
+
+    func attack() {
+        print("\(name) оглушает противника мощным ударом по голове!")
+    }
+}
+
+let basicSword = Sword(name: "Железный меч")
+let epicStaff = MagicStaff(name: "Посох Бури")
+let hunterBow = Bow(name: "Охотничий лук")
+let heavyShield = Shield(name: "Тяжёлый щит")
+
+print("⚔️ Атака мечом:")
+basicSword.attack() 
+
+print("\n🔮 Атака посохом:")
+epicStaff.attack() 
+
+print("\n🏹 Атака луком:")
+hunterBow.attack()  
+
+print("\n🛡️ Атака щитом:")
+heavyShield.attack() 
